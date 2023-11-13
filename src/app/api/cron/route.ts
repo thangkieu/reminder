@@ -6,7 +6,7 @@ function getEmailContent() {
   return "Hello world?";
 }
 
-export default async function cronJob(req: NextRequest) {
+export async function GET(req: NextRequest) {
   if (headers().get("Authorization") !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
   }
