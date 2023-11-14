@@ -1,5 +1,5 @@
 type NoteItem = {
-  id: string;
+  id: number;
   title: string;
   content: string;
   createdAt: string;
@@ -11,4 +11,4 @@ type NoteItemPOST = {
   content: string;
 };
 
-type NoteItemPUT = { id: string; title: string; content: string };
+type NoteItemPUT = { id: number; title: string; content: string };

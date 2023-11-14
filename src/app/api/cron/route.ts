@@ -4,11 +4,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { sendEmail } from '@/utils/email';
 import { prisma } from '@/utils/prisma';
 
-function getEmailContent() {
-  return 'Hello world?';
-}
+import { getEmailContent } from './_get-emails';
 
-const SUBJECT = 'Your Daily Highlighting';
+const SUBJECT = 'Your Daily Reminder';
 
 export async function GET(req: NextRequest) {
   console.log('Running CronJob...', headers().get('Authorization'));
@@ -18,13 +16,13 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ message: 'Unauthorized' }, { status: 401 });
   }
 
-  const mailContent = getEmailContent();
+  const mailContent = await getEmailContent();
   const toemails = await prisma.recipient.findMany();
 
   console.log('Recipients:', toemails);
 
-  for (let i = 0; i < toemails.length; i++) {
-    const to = toemails[i].email;
+  for (const element of toemails) {
+    const to = element.email;
 
     console.log(`Sending Email "${SUBJECT}" to ${to} at ${new Date()}`);
 

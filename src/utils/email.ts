@@ -20,7 +20,7 @@ export async function sendEmail(payload: Mail.Options) {
   // send mail with defined transport object
   const info = await transporter.sendMail({
     ...payload,
-    from: '"Email Reminder 👻" <foo@example.com>', // sender address
+    from: '"Note Reminder" <foo@example.com>', // sender address
   });
 
   return info;

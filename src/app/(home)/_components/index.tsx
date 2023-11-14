@@ -32,7 +32,7 @@ export default function Home() {
         <NoteList />
       </Container>
       <Modal opened={open} onClose={toggle} title="Submit New Note">
-        <NoteForm onDone={toggle} />
+        <NoteForm onDone={toggle} onCancel={toggle} />
       </Modal>
     </main>
   );
