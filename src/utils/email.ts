@@ -22,5 +22,5 @@ export async function sendEmail(payload: Mail.Options) {
     from: '"Email Reminder 👻" <foo@example.com>', // sender address
   });
 
-  console.log("Message sent: %s", info.messageId);
+  return info;
 }
