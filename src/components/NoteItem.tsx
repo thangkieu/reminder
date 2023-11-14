@@ -1,32 +1,13 @@
-"use client";
+'use client';
 
-import {
-  ActionIcon,
-  Button,
-  Card,
-  Divider,
-  Flex,
-  Group,
-  Image,
-  Text,
-  Title,
-} from "@mantine/core";
-import { IconEdit, IconTrash } from "@tabler/icons-react";
-import { useCallback } from "react";
+import { useCallback } from 'react';
 
-type NoteItemType = {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-  imageUrl: string;
-  lastSeen: string | null;
-  lastSeenDateTime?: string;
-};
+import { Button, Card, Divider, Group, Text, Title } from '@mantine/core';
+import { IconEdit, IconTrash } from '@tabler/icons-react';
 
 interface Props {
-  data: NoteItemType;
-  onEdit?(payload: NoteItemType): void;
+  data: NoteItem;
+  onEdit?(payload: NoteItem): void;
   onDelete?(id: string): void;
 }
 
@@ -43,12 +24,15 @@ export function NodeItem(p: Readonly<Props>) {
 
   return (
     <Card withBorder shadow="sm" padding="md" radius="md">
-      <Title order={4}>You&apos;ve won a million dollars in cash!</Title>
+      <Title order={4}>{props.data.title}</Title>
 
-      <Text mt="xs" c="dimmed" size="sm">
-        Please click anywhere on this card to claim your reward, this is not a
-        fraud, trust us
+      <Text mb="xs" c="dimmed" size="sm">
+        {props.data.content}
       </Text>
+      <Text c="dimmed" size="sm" mb="md">
+        {props.data.createdAt}
+      </Text>
+
       <Card.Section withBorder>
         <Group wrap="nowrap" gap={0}>
           <Button
@@ -81,5 +65,3 @@ export function NodeItem(p: Readonly<Props>) {
     </Card>
   );
 }
-
-export type { NoteItemType };

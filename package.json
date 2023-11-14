@@ -6,20 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prisma-schema": "prisma generate",
+    "prisma-migrate": "prisma migrate dev"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@mantine/core": "^7.2.2",
     "@mantine/form": "^7.2.2",
     "@mantine/hooks": "^7.2.2",
+    "@prisma/client": "^5.5.2",
     "@tabler/icons-react": "^2.40.0",
     "@tanstack/react-query": "^5.8.3",
     "@vercel/blob": "^0.15.0",
-    "@vercel/kv": "^1.0.0",
     "axios": "^1.6.1",
     "next": "14.0.2",
     "nodemailer": "^6.9.7",
+    "prisma": "^5.5.2",
     "react": "^18",
     "react-dom": "^18"
   },

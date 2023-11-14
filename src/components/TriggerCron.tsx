@@ -1,11 +1,12 @@
-"use client";
+'use client';
 
-import { Button } from "@mantine/core";
-import axios from "axios";
+import axios from 'axios';
+
+import { Button } from '@mantine/core';
 
 export function TriggerCronJobButton() {
   const triggerCronJob = () => {
-    axios.get("/api/cron", {
+    axios.get('/api/cron', {
       headers: {
         Authorization: `Bearer ${process.env.NEXT_PUBLIC_CRON_SECRET}`,
       },

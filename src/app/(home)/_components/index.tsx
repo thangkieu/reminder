@@ -1,13 +1,12 @@
-"use client";
+'use client';
 
-import NoteForm from "@/components/NoteForm";
-import { NoteList } from "@/components/NoteList";
-import { useCallback, useState } from "react";
+import { useCallback, useState } from 'react';
 
-import { Box, Button, Container, Group, Title } from "@mantine/core";
-import { Modal } from "@mantine/core";
-import { IconNotebook, IconPlus } from "@tabler/icons-react";
-import { TriggerCronJobButton } from "@/components/TriggerCron";
+import NoteForm from '@/components/NoteForm';
+import { NoteList } from '@/components/NoteList';
+import { TriggerCronJobButton } from '@/components/TriggerCron';
+import { Button, Container, Group, Modal, Title } from '@mantine/core';
+import { IconNotebook, IconPlus } from '@tabler/icons-react';
 
 export default function Home() {
   const [open, setOpen] = useState(false);
@@ -24,12 +23,7 @@ export default function Home() {
           </Group>
         </Title>
         <Group mb="sm" justify="flex-end">
-          <Button
-            variant="default"
-            radius="md"
-            leftSection={<IconPlus />}
-            onClick={toggle}
-          >
+          <Button variant="default" radius="md" leftSection={<IconPlus />} onClick={toggle}>
             Add Note
           </Button>
           <TriggerCronJobButton />
@@ -38,7 +32,7 @@ export default function Home() {
         <NoteList />
       </Container>
       <Modal opened={open} onClose={toggle} title="Submit New Note">
-        <NoteForm />
+        <NoteForm onDone={toggle} />
       </Modal>
     </main>
   );

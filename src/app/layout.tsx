@@ -1,17 +1,17 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import "@mantine/core/styles.css";
-import { MantineProvider, ColorSchemeScript } from "@mantine/core";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { UseQueryProvider } from "@/components/UseQueryProvider";
+import type { Metadata } from 'next';
+import './globals.css';
+import '@mantine/core/styles.css';
 
-const inter = Inter({ subsets: ["latin"] });
-const queryClient = new QueryClient();
+import { Inter } from 'next/font/google';
+
+import { UseQueryProvider } from '@/components/UseQueryProvider';
+import { ColorSchemeScript, MantineProvider } from '@mantine/core';
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "Note Reminder",
-  description: "",
+  title: 'Note Reminder',
+  description: '',
 };
 
 interface Props {
