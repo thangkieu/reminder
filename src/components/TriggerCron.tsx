@@ -1,5 +1,6 @@
 "use client";
 
+import { Button } from "@mantine/core";
 import axios from "axios";
 
 export function TriggerCronJobButton() {
@@ -11,5 +12,9 @@ export function TriggerCronJobButton() {
     });
   };
 
-  return <button onClick={triggerCronJob}>Trigger CronJob</button>;
+  return (
+    <Button variant="light" onClick={triggerCronJob}>
+      Trigger CronJob
+    </Button>
+  );
 }
