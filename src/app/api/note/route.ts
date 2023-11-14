@@ -9,7 +9,6 @@ export async function POST(req: NextRequest) {
 
   console.debug('Insert new note');
   const newNote = await prisma.note.create({ data });
-
   console.debug('Insert new note successful', data);
 
   return NextResponse.json(newNote);
