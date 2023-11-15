@@ -20,8 +20,22 @@ export async function sendEmail(payload: Mail.Options) {
   const transporter = getTransporter();
 
   // send mail with defined transport object
-  return transporter.sendMail({
-    ...payload,
-    from: `"Note Reminder" <${process.env.EMAIL_USER}>`, // sender address
+
+  return await new Promise((resolve, reject) => {
+    // send mail
+    transporter.sendMail(
+      {
+        ...payload,
+        from: `"Note Reminder" <${process.env.EMAIL_USER}>`, // sender address
+      },
+      (err, info) => {
+        if (err) {
+          console.error('Send Email Error:', err);
+          reject(err);
+        } else {
+          resolve(info);
+        }
+      }
+    );
   });
 }
