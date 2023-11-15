@@ -3,6 +3,8 @@ import nodemailer from 'nodemailer';
 import type Mail from 'nodemailer/lib/mailer';
 
 function getTransporter() {
+  console.debug('Email Server', process.env.EMAIL_USER, process.env.EMAIL_PASSWORD);
+
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
@@ -18,10 +20,8 @@ export async function sendEmail(payload: Mail.Options) {
   const transporter = getTransporter();
 
   // send mail with defined transport object
-  const info = await transporter.sendMail({
+  return transporter.sendMail({
     ...payload,
-    from: '"Note Reminder" <foo@example.com>', // sender address
+    from: `"Note Reminder" <${process.env.EMAIL_USER}>`, // sender address
   });
-
-  return info;
 }
