@@ -14,36 +14,20 @@ function getTransporter() {
   return transporter;
 }
 
-function trysendemail(data: Mail.Options) {
-  let transporter = nodemailer.createTransport({
-    sendmail: true,
-    newline: 'unix',
-    path: '/usr/sbin/sendmail',
-  });
-
-  transporter.sendMail(data, (err, info) => {
-    console.log('trysendemail info', info);
-    console.log('trysendemail error', err);
-  });
-}
 export async function sendEmail(payload: Mail.Options) {
   const transporter = getTransporter();
-  trysendemail({
-    ...payload,
-    from: `"Jay _" <${process.env.EMAIL_USER}>`, // sender address
-  });
 
-  console.debug('Start verifying transporter');
-  await new Promise((resolve, reject) => {
-    // verify connection configuration
-    transporter.verify(function (error: any, success: any) {
-      if (success) resolve(success);
+  // console.debug('Start verifying transporter');
+  // await new Promise((resolve, reject) => {
+  //   // verify connection configuration
+  //   transporter.verify(function (error: any, success: any) {
+  //     console.debug('Verify Transporter failed', error, success);
+  //     if (success) resolve(success);
 
-      console.debug('Verify Transporter failed', error);
-      reject(error);
-    });
-  });
-  console.debug('Verifying transporter successful');
+  //     reject(error);
+  //   });
+  // });
+  // console.debug('Verifying transporter successful');
 
   // send mail with defined transport object
   console.debug('Start Sending Email...');
