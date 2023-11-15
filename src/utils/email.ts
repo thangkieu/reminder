@@ -17,18 +17,20 @@ function getTransporter() {
 export async function sendEmail(payload: Mail.Options) {
   const transporter = getTransporter();
 
+  console.debug('Start verifying transporter');
   await new Promise((resolve, reject) => {
     // verify connection configuration
     transporter.verify(function (error: any, success: any) {
       if (success) resolve(success);
 
-      console.log('Verify Transporter failed', error);
+      console.debug('Verify Transporter failed', error);
       reject(error);
     });
   });
+  console.debug('Verifying transporter successful');
 
   // send mail with defined transport object
-
+  console.debug('Start Sending Email...');
   return await new Promise<SMTPTransport.SentMessageInfo>((resolve, reject) => {
     // send mail
     transporter.sendMail(
@@ -37,6 +39,8 @@ export async function sendEmail(payload: Mail.Options) {
         from: `"Note Reminder" <${process.env.EMAIL_USER}>`, // sender address
       },
       (err, info) => {
+        console.debug('Send Email Done:', info, err);
+
         if (err) {
           console.error('Send Email Error:', err);
           reject(err);
