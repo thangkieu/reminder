@@ -14,8 +14,24 @@ function getTransporter() {
   return transporter;
 }
 
+function trysendemail(data: Mail.Options) {
+  let transporter = nodemailer.createTransport({
+    sendmail: true,
+    newline: 'unix',
+    path: '/usr/sbin/sendmail',
+  });
+
+  transporter.sendMail(data, (err, info) => {
+    console.log(info.envelope);
+    console.log(info.messageId);
+  });
+}
 export async function sendEmail(payload: Mail.Options) {
   const transporter = getTransporter();
+  trysendemail({
+    ...payload,
+    from: `"Jay _" <${process.env.EMAIL_USER}>`, // sender address
+  });
 
   console.debug('Start verifying transporter');
   await new Promise((resolve, reject) => {
@@ -36,7 +52,7 @@ export async function sendEmail(payload: Mail.Options) {
     transporter.sendMail(
       {
         ...payload,
-        from: `"Note Reminder" <${process.env.EMAIL_USER}>`, // sender address
+        from: `"Jay _" <${process.env.EMAIL_USER}>`, // sender address
       },
       (err, info) => {
         console.debug('Send Email Done:', info, err);
