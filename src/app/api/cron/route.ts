@@ -31,7 +31,9 @@ export async function GET(req: NextRequest) {
       subject: SUBJECT,
       text: mailContent,
       html: mailContent,
-    }).then((info) => console.log('Message sent: %s', info.messageId));
+    })
+      .then((info) => console.log('Message sent: %s', info.messageId))
+      .catch((err) => console.error('Send Email failed', err));
   }
 
   return NextResponse.json({ message: 'Sending...' });
