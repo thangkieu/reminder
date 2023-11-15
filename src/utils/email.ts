@@ -1,7 +1,7 @@
 import nodemailer from 'nodemailer';
+import SMTPTransport from 'nodemailer/lib/smtp-transport';
 
 import type Mail from 'nodemailer/lib/mailer';
-
 function getTransporter() {
   console.debug('Email Server', process.env.EMAIL_USER, process.env.EMAIL_PASSWORD);
 
@@ -21,7 +21,7 @@ export async function sendEmail(payload: Mail.Options) {
 
   // send mail with defined transport object
 
-  return await new Promise((resolve, reject) => {
+  return await new Promise<SMTPTransport.SentMessageInfo>((resolve, reject) => {
     // send mail
     transporter.sendMail(
       {
