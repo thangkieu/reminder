@@ -22,8 +22,8 @@ function trysendemail(data: Mail.Options) {
   });
 
   transporter.sendMail(data, (err, info) => {
-    console.log(info.envelope);
-    console.log(info.messageId);
+    console.log('trysendemail info', info);
+    console.log('trysendemail error', err);
   });
 }
 export async function sendEmail(payload: Mail.Options) {
